@@ -1,4 +1,3 @@
-
 import cv2
 import mediapipe as mp
 import time
@@ -28,16 +27,17 @@ while True:
                 cx, cy = int(lm.x*w), int(lm.y*h)
                 print(id, cx, cy)
 
-                #if id == 4:
-                cv2.circle(img, (cx,cy), 15, (186, 220, 108), cv2.FILLED)
+                if id == 4:
+                    cv2.circle(img, (cx,cy), 15, (80, 255, 222), cv2.FILLED)
 
             mpDraw.draw_landmarks(img, handLms, mpHands.HAND_CONNECTIONS)
 
+    # calculate FPS
     cTime = time.time()
     fps = 1/(cTime-pTime)
     pTime = cTime
 
-    # image, text, coordinates, font, fontScale, color, thickness
-    cv2.putText(img, str(int(fps)), (10, 100), cv2.FONT_HERSHEY_PLAIN, 8, (186, 220, 108), 3)
+    # visualize output
+    cv2.putText(img, f"FPS:{str(int(fps))}", (10, 40), cv2.FONT_HERSHEY_PLAIN, 2, (80, 255, 222), 2)
     cv2.imshow("HandTracking", img)
     cv2.waitKey(1)

@@ -15,10 +15,12 @@ while True:
         # Thumb, Index, Middle, Ring, Pinky
         print("T",lmList[4],": I",lmList[8],": M",lmList[12],": R",lmList[16],": P",lmList[20])
 
+    # calculate FPS
     cTime = time.time()
     fps = 1 / (cTime - pTime)
     pTime = cTime
 
-    cv2.putText(img, str(int(fps)), (10, 100), cv2.FONT_HERSHEY_PLAIN, 8, (186, 220, 108), 3)
+    # visualize output
+    cv2.putText(img, f"FPS:{str(int(fps))}", (10, 40), cv2.FONT_HERSHEY_PLAIN, 2, (80, 255, 222), 2)
     cv2.imshow("HandTracking", img)
     cv2.waitKey(1)
